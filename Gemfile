@@ -1,103 +1,101 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.2'
+ruby '~> 2.6'
 
-# Full-stack web application framework. (https://rubyonrails.org)
-gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 
-# Pg is the Ruby interface to the {PostgreSQL RDBMS}[http://www.postgresql.org/] (https://github.com/ged/ruby-pg)
+# Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 
-# Puma is a simple, fast, threaded, and highly concurrent HTTP 1.1 server for Ruby/Rack applications (http://puma.io)
-gem 'puma', '~> 4.1'
+# Use Puma as the app server
+gem 'puma', '~> 4.3'
 
-# Sass adapter for the Rails asset pipeline. (https://github.com/rails/sass-rails)
+# Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 
-# Use webpack to manage app-like JavaScript modules in Rails (https://github.com/rails/webpacker)
-gem 'webpacker', '~> 5.0'
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'webpacker', '~> 4.2'
 
-# Create JSON structures via a Builder-style DSL (https://github.com/rails/jbuilder)
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 
-# A fast JSON parser and serializer. (http://www.ohler.com/oj)
+# Optimized JSON
 gem 'oj'
 
-# High-level wrapper for processing images for the web with ImageMagick or libvips. (https://github.com/janko/image_processing)
+# Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 
-# AWS SDK for Ruby - Amazon S3 (https://github.com/aws/aws-sdk-ruby)
+# The official AWS SDK for Ruby
 gem 'aws-sdk-s3'
 
-# Boot large ruby/rails apps faster (https://github.com/Shopify/bootsnap)
+# Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-# Reports exceptions to Rollbar (https://rollbar.com)
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Exception tracking and logging to Rollbar
 gem 'rollbar'
 
-# Tame Rails' multi-line logging into a single line per request (https://github.com/roidrage/lograge)
+# Taming Rails' Default Request Logging
 gem 'lograge'
 
-# Whitespace cleanup for ActiveModel attributes (https://github.com/rmm5t/strip_attributes)
+# Automatically strips all attributes of leading and trailing whitespace before validation
 gem 'strip_attributes'
 
-# The Ultimate Pagination Ruby Gem (https://github.com/ddnexus/pagy)
+# The ultimate pagination ruby gem
 gem 'pagy'
 
-# A modern, responsive admin framework for Ruby on Rails (https://www.trestle.io)
+# A modern, responsive admin framework for Ruby on Rails
 gem 'trestle'
 
-# Flexible authentication solution for Rails with Warden (https://github.com/heartcombo/devise)
+# Flexible authentication solution for Rails with Warden
 gem 'devise'
 
-# Barebones two-factor authentication with Devise (https://github.com/tinfoil/devise-two-factor)
+# Barebones two-factor authentication with Devise
 gem 'devise-two-factor'
 
-# Middleware for enabling Cross-Origin Resource Sharing in Rack apps (https://github.com/cyu/rack-cors)
+# A modular Ruby webserver interface
+gem 'rack', '!= 2.1.0', '!= 2.1.1' # Fix Sidekiq issue
+
+# Rack Middleware for handling Cross-Origin Resource Sharing (CORS), which makes cross-origin AJAX possible.
 gem 'rack-cors', require: 'rack/cors'
 
-# Block & throttle abusive requests (https://github.com/kickstarter/rack-attack)
+# Rack middleware for blocking & throttling
 gem 'rack-attack'
 
-# Rack middleware for defining a canonical host name. (http://github.com/tylerhunt/rack-canonical-host)
+# Rack middleware for defining a canonical host name.
 gem 'rack-canonical-host'
 
-# Simple authorization solution for Rails. (https://github.com/CanCanCommunity/cancancan)
+# The authorization Gem for Ruby on Rails
 gem 'cancancan'
 
-# A gem adding sorting, reordering capabilities to an active_record model, allowing it to act as a list (http://github.com/brendon/acts_as_list)
+# An ActiveRecord plugin for managing lists
 gem 'acts_as_list'
 
-# Turbolinks makes navigating your web application faster (https://github.com/turbolinks/turbolinks)
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-
-# Use Rails render with Turbolinks (https://github.com/jorgemanrubia/turbolinks_render)
 gem 'turbolinks_render'
 
-# Slim is a template language. (http://slim-lang.com/)
+# Template language whose goal is to reduce the syntax to the essential parts without becoming cryptic
 gem 'slim'
 
-# Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions. (https://github.com/rest-client/rest-client)
+# Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions
 gem 'rest-client'
 
-# Simple, efficient background processing for Ruby (http://sidekiq.org)
+# Simple, efficient background processing for Ruby
 gem 'sidekiq'
 
-# Complete geocoding solution for Ruby. (http://www.rubygeocoder.com)
+# Complete Ruby geocoding solution
 gem 'geocoder'
 
-# Collection of SEO helpers for Ruby on Rails. (http://github.com/kpumuk/meta-tags)
+# Search Engine Optimization (SEO) for Ruby on Rails applications
 gem 'meta-tags'
 
-# Intelligent search made easy with Rails and Elasticsearch (https://github.com/ankane/searchkick)
+# Intelligent search made easy with Rails and Elasticsearch
 gem 'searchkick'
 
-# Inertia adapter for Rails (https://github.com/inertiajs/inertia-rails)
+# The Rails adapter for Inertia.js
 gem 'inertia_rails'
-
-# Markdown that smells nice (http://github.com/vmg/redcarpet)
-gem 'redcarpet'
-
-# A comprehensive slugging and pretty-URL plugin. (https://github.com/norman/friendly_id)
-gem 'friendly_id'
