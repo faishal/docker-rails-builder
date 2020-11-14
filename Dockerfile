@@ -1,5 +1,5 @@
 FROM ruby:2.6.5-stretch
-LABEL maintainer="georg@ledermann.dev"
+LABEL maintainer="saiyedfaishal@gmail.com"
 
 # Add basic packages
 RUN apt-get update && apt-get install -y --no-install-recommends apt-transport-https && \
