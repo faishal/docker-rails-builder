@@ -28,7 +28,7 @@ Note: Before I started timing, the base image was not available on my machine, s
 
 This repo is based on the following assumptions:
 
-- Your app is compatible with [Ruby 2.7.2 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/2.7/alpine3.12/Dockerfile)
+- Your app is compatible with [Ruby 2.6.5 for Stretch Linux](https://github.com/docker-library/ruby/tree/master/2.6/stretch/Dockerfile)
 - Your app uses Ruby on Rails 6
 - Your app uses PostgreSQL
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/)
@@ -40,25 +40,13 @@ It uses [multi-stage building](https://docs.docker.com/develop/develop-images/mu
 
 The `Builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
 
-- Based on [ruby:2.7.2-alpine](https://github.com/docker-library/ruby/blob/master/2.7/alpine3.12/Dockerfile)
+- Based on [ruby:2.6.5-stretch](https://github.com/docker-library/ruby/tree/master/2.6/stretch/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client and build tools
 - Adds some standard Ruby gems (Rails 6 etc., see [Gemfile](./Builder/Gemfile))
 - Adds some standard Node modules (Vue.js etc., see [package.json](./Builder/package.json))
 - Via ONBUILD triggers it installs missing gems and Node modules, then compiles the assets
 
-See [Builder/Dockerfile](./Builder/Dockerfile)
-
-
-### Final stage
-
-The `Final` stage builds the production image, which includes just the bare minimum.
-
-- Based on [ruby:2.7.2-alpine](https://github.com/docker-library/ruby/blob/master/2.7/alpine3.12/Dockerfile)
-- Adds packages needed for production: postgresql-client, tzdata, file
-- Via ONBUILD triggers it mainly copies the app and gems from the `Builder` stage
-
-See [Final/Dockerfile](./Final/Dockerfile)
-
+See [Dockerfile](./Dockerfile)
 
 ### Staying up-to-date
 
@@ -70,8 +58,8 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node modu
 #### Build Docker image
 
 ```Dockerfile
-FROM ledermann/rails-base-builder:2.7.2-alpine AS Builder
-FROM ledermann/rails-base-final:2.7.2-alpine
+FROM faishal/rails-base-builder:2.6.5-stretch AS Builder
+FROM faishal/rails-base-final:2.6.5-stretch
 USER app
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 ```
@@ -116,7 +104,7 @@ Using a prebuilt image improves installing dependencies a lot, because only the 
 
 This doesn't matter:
 
-- A missing Alpine package can be installed with `apk add` inside your app's Dockerfile.
+- A missing stretch package can be installed with `apk add` inside your app's Dockerfile.
 - A missing Node module (or version) will be installed with `rails assets:precompile` via the ONBUILD trigger.
 - A missing Ruby gem (or version) will be installed with `bundle install` via the ONBUILD trigger.
 
